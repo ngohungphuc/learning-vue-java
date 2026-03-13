@@ -1,11 +1,17 @@
-<script setup></script>
+<script>
+import MainNav from './components/MainNav.vue'
+
+export default {
+  name: 'App',
+  components: {
+    MainNav,
+  },
+}
+</script>
 
 <template>
   <h1 class="mt-8">You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <MainNav />
 </template>
 
 <style scoped></style>
