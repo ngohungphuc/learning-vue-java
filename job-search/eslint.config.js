@@ -19,6 +19,9 @@ export default defineConfig([
       globals: {
         ...globals.browser,
       },
+      env: {
+        'vitest-globals/env': true,
+      },
     },
   },
 
