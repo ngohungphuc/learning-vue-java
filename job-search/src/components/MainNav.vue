@@ -21,7 +21,7 @@ export default {
   name: 'MainNav',
   data() {
     return {
-      company: 'Test company',
+      company: 'Company name',
       url: 'https://careers.google.com',
       menuItems: ['Teams', 'Locations', 'Life at Google Corp', 'How we hire', 'Students', 'Jobs'],
     }
