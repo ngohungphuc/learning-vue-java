@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@theme {
+  /* 1. Define your custom color */
+  /* This creates the 'bg-brand-blue-1' utility */
+  --color-brand-blue-1: #0070f3;
+
+  /* 2. Define your custom shadow */
+  /* This creates the 'shadow-blue' utility */
+  --shadow-blue: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
