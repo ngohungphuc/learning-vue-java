@@ -1,7 +1,5 @@
 <template>
-  <button
-    class="rounded border-0 bg-brand-blue-1 px-5 py-3 font-medium text-white hover:shadow-blue"
-  >
+  <button :class="primary">
     {{ text }}
   </button>
 </template>
@@ -12,3 +10,17 @@ export default {
   props: ['text'],
 }
 </script>
+
+<style scoped>
+@reference "../index.css";
+button {
+  @apply rounded px-5 py-3 font-medium;
+}
+
+.primary {
+  @apply border-1 bg-brand-blue-1 text-white hover:shadow-blue;
+}
+
+.secondary {
+}
+</style>
