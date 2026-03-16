@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-@reference "../index.css";
+@reference "../../index.css";
 button {
   @apply rounded px-5 py-3 font-medium;
 }

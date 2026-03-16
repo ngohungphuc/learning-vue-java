@@ -1,54 +1,54 @@
-import { nextTick } from "vue";
-import { render, screen } from "@testing-library/vue";
+import { nextTick } from 'vue'
+import { render, screen } from '@testing-library/vue'
 
-import TheHeadline from "@/components/TheHeadline.vue";
+import TheHeadline from '@/components/JobSearch/TheHeadline.vue'
 
-describe("TheHeadline", () => {
+describe('TheHeadline', () => {
   beforeEach(() => {
-    vi.useFakeTimers();
-  });
+    vi.useFakeTimers()
+  })
 
   afterEach(() => {
-    vi.useRealTimers();
-  });
+    vi.useRealTimers()
+  })
 
-  it("displays introductory action verb", () => {
-    render(TheHeadline);
+  it('displays introductory action verb', () => {
+    render(TheHeadline)
 
-    const actionPhrase = screen.getByRole("heading", {
+    const actionPhrase = screen.getByRole('heading', {
       name: /build for everyone/i,
-    });
-    expect(actionPhrase).toBeInTheDocument();
-  });
+    })
+    expect(actionPhrase).toBeInTheDocument()
+  })
 
-  it("changes action verb at a consistent interval", () => {
-    const mock = vi.fn();
-    vi.stubGlobal("setInterval", mock);
+  it('changes action verb at a consistent interval', () => {
+    const mock = vi.fn()
+    vi.stubGlobal('setInterval', mock)
 
-    render(TheHeadline);
+    render(TheHeadline)
 
-    expect(mock).toHaveBeenCalled();
-  });
+    expect(mock).toHaveBeenCalled()
+  })
 
-  it("swaps action verb after interval", async () => {
-    render(TheHeadline);
-    vi.advanceTimersToNextTimer();
+  it('swaps action verb after interval', async () => {
+    render(TheHeadline)
+    vi.advanceTimersToNextTimer()
 
-    await nextTick();
-    const actionPhrase = screen.getByRole("heading", {
+    await nextTick()
+    const actionPhrase = screen.getByRole('heading', {
       name: /create for everyone/i,
-    });
+    })
 
-    expect(actionPhrase).toBeInTheDocument();
-  });
+    expect(actionPhrase).toBeInTheDocument()
+  })
 
-  it("removes interval when component disappears", () => {
-    const clearInterval = vi.fn();
-    vi.stubGlobal("clearInterval", clearInterval);
+  it('removes interval when component disappears', () => {
+    const clearInterval = vi.fn()
+    vi.stubGlobal('clearInterval', clearInterval)
 
-    const { unmount } = render(TheHeadline);
-    unmount();
-    expect(clearInterval).toHaveBeenCalled();
-    vi.unstubAllGlobals();
-  });
-});
+    const { unmount } = render(TheHeadline)
+    unmount()
+    expect(clearInterval).toHaveBeenCalled()
+    vi.unstubAllGlobals()
+  })
+})
