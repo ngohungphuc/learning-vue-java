@@ -1,12 +1,14 @@
 import java.sql.*;
-public class DemoJDBC throw Exception {
-    public static void main(String[] args) {
-        String url = "jdbc:postgresql:demo";
+
+public class DemoJDBC { // No 'throw' here
+    public static void main(String[] args) throws Exception { // 'throws' goes here
+        String url = "jdbc:postgresql://localhost:5432/demo";
         String uname = "postgres";
-        String pass = "0000";
+        String pass = "x";
 
         Class.forName("org.postgresql.Driver");
-        Connection con = DriverManager(uri: "", user: "", password:"")
+        Connection con = DriverManager.getConnection(url, uname, pass); // Added .getConnection
+
+        System.out.println("Connection established");
     }
 }
-
