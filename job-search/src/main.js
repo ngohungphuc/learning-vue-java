@@ -5,6 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import router from '@/router'
+import { createPinia } from 'pinia'
 
-library.add(faSearch)
-createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+const pinia = createPinia()
+library
+  .add(faSearch)
+  .use(pinia)
+  .createApp(App)
+  .use(router)
+  .component('font-awesome-icon', FontAwesomeIcon)
+  .mount('#app')
