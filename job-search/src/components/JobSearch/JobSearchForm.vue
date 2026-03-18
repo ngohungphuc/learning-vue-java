@@ -6,7 +6,7 @@
       <div class="relative flex h-full flex-1 items-center pr-3">
         <label class="absolute -top-10 left-0">Role</label>
 
-        <text-input placeholder="Software engineer" @handleInput="updateRole" />
+        <text-input placeholder="Software engineer" :value="role" @handleInput="role = $event" />
       </div>
 
       <span
@@ -18,7 +18,7 @@
       <div class="relative flex h-full flex-1 items-center pl-3">
         <label class="absolute -top-10 left-0">Where?</label>
 
-        <text-input placeholder="Los Angeles" @handleInput="updateLocation" />
+        <text-input placeholder="Los Angeles" :value="location" @handleInput="location = $event" />
       </div>
     </div>
 
@@ -37,16 +37,6 @@ export default {
       role: '',
       location: '',
     }
-  },
-  methods: {
-    updateRole(payload) {
-      console.log(payload)
-      this.role = payload
-    },
-    updateLocation(payload) {
-      console.log(payload)
-      this.location = payload
-    },
   },
 }
 </script>
