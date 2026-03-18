@@ -6,7 +6,7 @@
       <div class="relative flex h-full flex-1 items-center pr-3">
         <label class="absolute -top-10 left-0">Role</label>
 
-        <text-input placeholder="Software engineer" :value="role" @handleInput="role = $event" />
+        <text-input placeholder="Software engineer" v-model="role" />
       </div>
 
       <span
@@ -18,7 +18,7 @@
       <div class="relative flex h-full flex-1 items-center pl-3">
         <label class="absolute -top-10 left-0">Where?</label>
 
-        <text-input placeholder="Los Angeles" :value="location" @handleInput="location = $event" />
+        <text-input placeholder="Los Angeles" v-model="location" />
       </div>
     </div>
 
