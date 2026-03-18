@@ -9,9 +9,7 @@
           <job-search-form />
         </div>
 
-        <div class="col-span-5 col-start-7 self-center justify-self-center">
-          <img class="h-80 w-80 object-contain" src="" />
-        </div>
+        <div class="col-span-5 col-start-7 self-center justify-self-center"></div>
 
         <div class="col-span-1 col-start-12"></div>
       </div>
