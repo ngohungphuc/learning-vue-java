@@ -5,11 +5,11 @@
 
 <script>
 export default {
-  name: "JobResultsView",
+  name: 'JobResultsView',
   methods: {
     goToHome() {
-      this.$router.push({ name: "Home" });
+      this.$router.push({ name: 'Home' })
     },
   },
-};
+}
 </script>

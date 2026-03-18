@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <MainNav></MainNav>
-    <SubNav></SubNav>
-  </div>
+  <main-nav />
   <router-view />
 </template>
 
 <script>
 import MainNav from '@/components/Navigation/MainNav.vue'
-import SubNav from './components/Navigation/SubNav.vue'
+
 export default {
   name: 'App',
-  components: { MainNav, SubNav },
+  components: { MainNav },
 }
 </script>
