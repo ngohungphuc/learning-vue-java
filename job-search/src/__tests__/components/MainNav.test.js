@@ -16,7 +16,7 @@ describe('MainNav', () => {
 
   it('displays company name', () => {
     renderMainNav()
-    const companyName = screen.getByText('Bobo Careers')
+    const companyName = screen.getByText('Company name')
     expect(companyName).toBeInTheDocument()
   })
 
@@ -27,7 +27,7 @@ describe('MainNav', () => {
     expect(navigationMenuTexts).toEqual([
       'Teams',
       'Locations',
-      'Life at Bobo Corp',
+      'Life at Google Corp',
       'How we hire',
       'Students',
       'Jobs',
