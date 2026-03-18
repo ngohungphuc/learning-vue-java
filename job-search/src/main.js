@@ -7,11 +7,19 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import router from '@/router'
 import { createPinia } from 'pinia'
 
+// 1. Add icons to the library first
+library.add(faSearch)
+
+// 2. Create the Pinia instance
 const pinia = createPinia()
-library
-  .add(faSearch)
-  .use(pinia)
-  .createApp(App)
-  .use(router)
-  .component('font-awesome-icon', FontAwesomeIcon)
-  .mount('#app')
+
+// 3. Create the App instance
+const app = createApp(App)
+
+// 4. Chain the plugins and components onto the 'app' instance
+app.use(pinia)
+app.use(router)
+app.component('font-awesome-icon', FontAwesomeIcon)
+
+// 5. Finally, mount the app
+app.mount('#app')
