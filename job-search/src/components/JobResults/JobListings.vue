@@ -34,6 +34,7 @@
 
 <script>
 import axios from 'axios'
+
 import JobListing from '@/components/JobResults/JobListing.vue'
 
 export default {
@@ -45,6 +46,9 @@ export default {
     }
   },
   computed: {
+    currentPage() {
+      return Number.parseInt(this.$route.query.page || '1')
+    },
     previousPage() {
       const previousPage = this.currentPage - 1
       const firstPage = 1
@@ -52,21 +56,19 @@ export default {
     },
     nextPage() {
       const nextPage = this.currentPage + 1
-      const maxPage = this.jobs.length / 10
+      const maxPage = Math.ceil(this.jobs.length / 10)
       return nextPage <= maxPage ? nextPage : undefined
     },
-    currentPage() {
-      return Number.parseInt(this.$route.query.page || '1')
-    },
     displayedJobs() {
-      const currPage = this.currentPage
-      const firstJobIndex = (currPage - 1) * 10
-      const lastJobIndex = currPage * 10
+      const pageNumber = this.currentPage
+      const firstJobIndex = (pageNumber - 1) * 10
+      const lastJobIndex = pageNumber * 10
       return this.jobs.slice(firstJobIndex, lastJobIndex)
     },
   },
   async mounted() {
-    const response = await axios.get('http://localhost:3000/jobs')
+    const baseUrl = import.meta.env.VITE_APP_API_URL
+    const response = await axios.get(`${baseUrl}/jobs`)
     this.jobs = response.data
   },
 }
