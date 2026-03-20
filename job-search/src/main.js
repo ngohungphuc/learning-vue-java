@@ -3,13 +3,14 @@ import App from './App.vue'
 import '@/index.css'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import router from '@/router'
 import { createPinia } from 'pinia'
 
 // 1. Add icons to the library first
 library.add(faSearch)
-
+library.add(faAngleUp)
+library.add(faAngleDown)
 // 2. Create the Pinia instance
 const pinia = createPinia()
 
