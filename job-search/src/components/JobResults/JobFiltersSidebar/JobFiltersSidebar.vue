@@ -8,7 +8,11 @@
         </div>
       </div>
 
-      <collapsible-accordion></collapsible-accordion>
+      <collapsible-accordion header="Degree" />
+
+      <collapsible-accordion header="Job types">
+        <p>Placeholder for now</p>
+      </collapsible-accordion>
     </section>
   </div>
 </template>
