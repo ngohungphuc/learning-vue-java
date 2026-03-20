@@ -13,15 +13,22 @@
       <collapsible-accordion header="Job types">
         <p>Placeholder for now</p>
       </collapsible-accordion>
+
+      <job-filters-sidebar-organizations />
     </section>
   </div>
 </template>
 
 <script>
-import ActionButton from '../../Shared/ActionButton.vue'
-import CollapsibleAccordion from '../../Shared/CollapsibleAccordion.vue'
+import ActionButton from '@/components/Shared/ActionButton.vue'
+import JobFiltersSidebarOrganizations from '@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarOrganizations.vue'
+import CollapsibleAccordion from '@/components/Shared/CollapsibleAccordion.vue'
 export default {
-  components: { ActionButton, CollapsibleAccordion },
+  components: {
+    ActionButton,
+    CollapsibleAccordion,
+    JobFiltersSidebarOrganizations,
+  },
   name: 'JobFiltersSidebar',
 }
 </script>
