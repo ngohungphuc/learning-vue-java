@@ -24,7 +24,7 @@
 import { mapActions, mapState } from 'pinia'
 
 import { useJobsStore, UNIQUE_ORGANIZATIONS } from '@/stores/jobs'
-//import { useUserStore, ADD_SELECTED_ORGANIZATIONS } from '@/stores/user'
+import { useUserStore, ADD_SELECTED_ORGANIZATIONS } from '@/stores/user'
 
 import CollapsibleAccordion from '@/components/Shared/CollapsibleAccordion.vue'
 
@@ -39,11 +39,11 @@ export default {
   computed: {
     ...mapState(useJobsStore, [UNIQUE_ORGANIZATIONS]),
   },
-  // methods: {
-  //   ...mapActions(useUserStore, [ADD_SELECTED_ORGANIZATIONS]),
-  //   selectOrganization() {
-  //     this.ADD_SELECTED_ORGANIZATIONS(this.selectedOrganizations)
-  //   },
-  // },
+  methods: {
+    ...mapActions(useUserStore, [ADD_SELECTED_ORGANIZATIONS]),
+    selectOrganization() {
+      this.ADD_SELECTED_ORGANIZATIONS(this.selectedOrganizations)
+    },
+  },
 }
 </script>
