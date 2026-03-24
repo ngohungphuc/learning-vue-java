@@ -33,9 +33,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 import JobListing from '@/components/JobResults/JobListing.vue'
-import { FETCH_JOBS, useJobsStore } from '@/stores/jobs'
+import { FETCH_JOBS, useJobsStore, FILTERED_JOBS_BY_ORGANIZATIONS } from '@/stores/jobs'
 import { mapActions, mapState } from 'pinia'
 
 export default {
@@ -51,10 +50,10 @@ export default {
       return previousPage >= firstPage ? previousPage : undefined
     },
     ...mapState(useJobsStore, {
-      jobs: 'jobs',
+      FILTERED_JOBS_BY_ORGANIZATIONS,
       nextPage() {
         const nextPage = this.currentPage + 1
-        const maxPage = Math.ceil(this.jobs.length / 10)
+        const maxPage = Math.ceil(this.FILTERED_JOBS_BY_ORGANIZATIONS.length / 10)
         return nextPage <= maxPage ? nextPage : undefined
       },
     }),
@@ -62,7 +61,7 @@ export default {
       const pageNumber = this.currentPage
       const firstJobIndex = (pageNumber - 1) * 10
       const lastJobIndex = pageNumber * 10
-      return this.jobs.slice(firstJobIndex, lastJobIndex)
+      return this.FILTERED_JOBS_BY_ORGANIZATIONS.slice(firstJobIndex, lastJobIndex)
     },
   },
   async mounted() {
