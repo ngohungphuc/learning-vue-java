@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/vue'
 import { createTestingPinia } from '@pinia/testing'
 
-import TheSubnav from '@/components/Navigation/TheSubnav.vue'
+import SubNav from '@/components/Navigation/Subnav.vue'
 import { useJobsStore } from '@/stores/jobs'
 
 describe('TheSubnav', () => {
@@ -9,7 +9,7 @@ describe('TheSubnav', () => {
     const pinia = createTestingPinia()
     const jobsStore = useJobsStore()
 
-    render(TheSubnav, {
+    render(SubNav, {
       global: {
         plugins: [pinia],
         mocks: {
