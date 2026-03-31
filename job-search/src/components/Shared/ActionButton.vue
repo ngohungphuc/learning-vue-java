@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { toRef, computed } from 'vue'
+import { toRefs, computed } from 'vue'
 const props = defineProps({
   text: {
     type: String,
@@ -21,8 +21,9 @@ const props = defineProps({
   },
 })
 
-const { type } = toRef(props)
-const butonClass = computed(() => {
+const { type } = toRefs(props)
+
+const buttonClass = computed(() => {
   return {
     [type.value]: true,
   }
