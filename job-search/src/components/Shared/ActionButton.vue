@@ -22,9 +22,10 @@ export default {
     },
   },
   setup(props) {
+    const { type } = toRef(props)
     const butonClass = computed(() => {
       return {
-        [props.type]: true,
+        [type.value]: true,
       }
     })
 
