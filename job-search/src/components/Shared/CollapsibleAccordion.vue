@@ -19,28 +19,39 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
-  name: "CollapsibleAccordion",
-  props: {
-    header: {
-      type: String,
-      required: true,
-    },
+  name: 'CollapsibleAccordion',
+  setup() {
+    const header = ref('Title')
+    const isOpen = ref(false)
+    const open = () => {
+      header.value = 'New title'
+      isOpen.value = !isOpen.value
+    }
+    return { header, isOpen, open }
   },
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-  computed: {
-    caretIcon() {
-      return this.isOpen ? ["fas", "angle-up"] : ["fas", "angle-down"];
-    },
-  },
-  methods: {
-    open() {
-      this.isOpen = !this.isOpen;
-    },
-  },
-};
+  // props: {
+  //   header: {
+  //     type: String,
+  //     required: true,
+  //   },
+  // },
+  // data() {
+  //   return {
+  //     isOpen: false,
+  //   };
+  // },
+  // computed: {
+  //   caretIcon() {
+  //     return this.isOpen ? ["fas", "angle-up"] : ["fas", "angle-down"];
+  //   },
+  // },
+  // methods: {
+  //   open() {
+  //     this.isOpen = !this.isOpen;
+  //   },
+  // },
+}
 </script>
