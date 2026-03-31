@@ -1,55 +1,59 @@
-import { render, screen } from "@testing-library/vue";
-import userEvent from "@testing-library/user-event";
-import { createTestingPinia } from "@pinia/testing";
+import { render, screen } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
+import { createTestingPinia } from '@pinia/testing'
+import { useRouter } from 'vue-router'
 
-import JobFiltersSidebarOrganizations from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarOrganizations.vue";
-import { useJobsStore } from "@/stores/jobs";
-import { useUserStore } from "@/stores/user";
+import JobFiltersSidebarOrganizations from '@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarOrganizations.vue'
+import { useJobsStore } from '@/stores/jobs'
+import { useUserStore } from '@/stores/user'
 
-describe("JobFiltersSidebarOrganizations", () => {
+vi.mock('vue-router', () => ({
+  useRouter: vi.fn(),
+}))
+
+describe('JobFiltersSidebarOrganizations', () => {
   const renderJobFiltersSidebarOrganizations = () => {
-    const pinia = createTestingPinia();
-    const userStore = useUserStore();
-    const jobsStore = useJobsStore();
+    const pinia = createTestingPinia()
+    const userStore = useUserStore()
+    const jobsStore = useJobsStore()
+
+    const push = vi.fn()
+    vi.mocked(useRouter).mockReturnValue({ push }) // Shorthand used here
 
     render(JobFiltersSidebarOrganizations, {
       global: {
         plugins: [pinia],
-        stubs: {
-          FontAwesomeIcon: true,
-        },
+        stubs: { FontAwesomeIcon: true },
       },
-    });
+    })
 
-    return { jobsStore, userStore };
-  };
+    return { jobsStore, userStore, push }
+  }
 
-  it("renders unique list of organizations from jobs", async () => {
-    const { jobsStore } = renderJobFiltersSidebarOrganizations();
-    jobsStore.UNIQUE_ORGANIZATIONS = new Set(["Google", "Amazon"]);
+  it('renders unique list of organizations from jobs', async () => {
+    const { jobsStore } = renderJobFiltersSidebarOrganizations()
+    jobsStore.UNIQUE_ORGANIZATIONS = new Set(['Google', 'Amazon'])
 
-    const button = screen.getByRole("button", { name: /organizations/i });
-    await userEvent.click(button);
+    const button = screen.getByRole('button', { name: /organizations/i })
+    await userEvent.click(button)
 
-    const organizationListItems = screen.getAllByRole("listitem");
-    const organizations = organizationListItems.map((node) => node.textContent);
-    expect(organizations).toEqual(["Google", "Amazon"]);
-  });
+    const organizationListItems = screen.getAllByRole('listitem')
+    const organizations = organizationListItems.map((node) => node.textContent)
+    expect(organizations).toEqual(['Google', 'Amazon'])
+  })
 
-  it("communicates that user has selected checkbox for organization", async () => {
-    const { jobsStore, userStore } = renderJobFiltersSidebarOrganizations();
-    jobsStore.UNIQUE_ORGANIZATIONS = new Set(["Google", "Amazon"]);
+  it('communicates that user has selected checkbox for organization', async () => {
+    const { jobsStore, userStore } = renderJobFiltersSidebarOrganizations()
+    jobsStore.UNIQUE_ORGANIZATIONS = new Set(['Google', 'Amazon'])
 
-    const button = screen.getByRole("button", { name: /organizations/i });
-    await userEvent.click(button);
+    const button = screen.getByRole('button', { name: /organizations/i })
+    await userEvent.click(button)
 
-    const googleCheckbox = screen.getByRole("checkbox", {
+    const googleCheckbox = screen.getByRole('checkbox', {
       name: /google/i,
-    });
-    await userEvent.click(googleCheckbox);
+    })
+    await userEvent.click(googleCheckbox)
 
-    expect(userStore.ADD_SELECTED_ORGANIZATIONS).toHaveBeenCalledWith([
-      "Google",
-    ]);
-  });
-});
+    expect(userStore.ADD_SELECTED_ORGANIZATIONS).toHaveBeenCalledWith(['Google'])
+  })
+})
