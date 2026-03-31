@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export default {
   name: 'CollapsibleAccordion',
@@ -30,7 +30,11 @@ export default {
       header.value = 'New title'
       isOpen.value = !isOpen.value
     }
-    return { header, isOpen, open }
+
+    const caretIcon = computed(() => {
+      return isOpen.value ? ['fas', 'angle-up'] : ['fas', 'angle-down']
+    })
+    return { caretIcon, header, isOpen, open }
   },
   // props: {
   //   header: {
