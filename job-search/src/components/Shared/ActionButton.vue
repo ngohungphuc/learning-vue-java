@@ -21,12 +21,14 @@ export default {
       },
     },
   },
-  computed: {
-    buttonClass() {
+  setup(props) {
+    const butonClass = computed(() => {
       return {
-        [this.type]: true,
+        [props.type]: true,
       }
-    },
+    })
+
+    return { butonClass }
   },
 }
 </script>

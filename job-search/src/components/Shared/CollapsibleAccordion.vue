@@ -23,18 +23,22 @@ import { computed, ref } from 'vue'
 
 export default {
   name: 'CollapsibleAccordion',
+  props: {
+    header: {
+      type: String,
+      required: true,
+    },
+  },
   setup() {
-    const header = ref('Title')
     const isOpen = ref(false)
     const open = () => {
-      header.value = 'New title'
       isOpen.value = !isOpen.value
     }
 
     const caretIcon = computed(() => {
       return isOpen.value ? ['fas', 'angle-up'] : ['fas', 'angle-down']
     })
-    return { caretIcon, header, isOpen, open }
+    return { caretIcon, isOpen, open }
   },
   // props: {
   //   header: {
