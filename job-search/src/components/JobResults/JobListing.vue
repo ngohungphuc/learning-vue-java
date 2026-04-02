@@ -5,7 +5,9 @@
       class="mx-auto block rounded border border-solid border-brand-gray-2 bg-white hover:shadow-gray"
     >
       <div class="mx-8 border-b border-solid border-brand-gray-2 pb-2 pt-5">
-        <h2 class="mb-2 text-2xl">{{ job.title }}</h2>
+        <h2 class="mb-2 text-2xl">
+          {{ job.title }}
+        </h2>
 
         <div class="flex flex-row align-middle">
           <div class="mr-5">
@@ -42,19 +44,15 @@
   </li>
 </template>
 
-<script>
-export default {
-  name: 'JobListing',
-  props: {
-    job: {
-      type: Object,
-      required: true,
-    },
+<script setup>
+import { computed } from 'vue'
+
+const props = defineProps({
+  job: {
+    type: Object,
+    required: true,
   },
-  computed: {
-    jobPageLink() {
-      return `/jobs/results/${this.job.id}`
-    },
-  },
-}
+})
+
+const jobPageLink = computed(() => `/jobs/results/${props.job.id}`)
 </script>
