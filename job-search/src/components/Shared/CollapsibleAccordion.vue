@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { computed, ref } from 'vue'
 
 defineProps({
@@ -29,11 +29,10 @@ defineProps({
 })
 
 const isOpen = ref(false)
+
 const open = () => {
   isOpen.value = !isOpen.value
 }
 
-const caretIcon = computed(() => {
-  return isOpen.value ? ['fas', 'angle-up'] : ['fas', 'angle-down']
-})
+const caretIcon = computed(() => (isOpen.value ? ['fas', 'angle-up'] : ['fas', 'angle-down']))
 </script>
