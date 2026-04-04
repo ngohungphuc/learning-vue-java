@@ -4,19 +4,22 @@ import { RouterLinkStub } from '@vue/test-utils'
 
 import MainNav from '@/components/Navigation/MainNav.vue'
 import { createTestingPinia } from '@pinia/testing'
+import { useRoute } from 'vue-router'
+vi.mock('vue-router')
+
+import { useUserStore } from '@/stores/user'
+import type { Mock } from 'vitest'
+const useRouteMock = useRoute as Mock
 
 describe('MainNav', () => {
   const renderMainNav = () => {
-    const pinia = createTestingPinia({ stubActions: false })
-    const $route = {
-      name: 'Home',
-    }
+    useRouteMock.mockReturnValue({ name: 'Home' })
+
+    const pinia = createTestingPinia()
+
     render(MainNav, {
       global: {
         plugins: [pinia],
-        mocks: {
-          $route,
-        },
         stubs: {
           FontAwesomeIcon: true,
           RouterLink: RouterLinkStub,
@@ -27,7 +30,7 @@ describe('MainNav', () => {
 
   it('displays company name', () => {
     renderMainNav()
-    const companyName = screen.getByText('Company name')
+    const companyName = screen.getByText('Jobs')
     expect(companyName).toBeInTheDocument()
   })
 
@@ -38,7 +41,7 @@ describe('MainNav', () => {
     expect(navigationMenuTexts).toEqual([
       'Teams',
       'Locations',
-      'Life at Google Corp',
+      'Life at Job Corp',
       'How we hire',
       'Students',
       'Jobs',
@@ -48,6 +51,7 @@ describe('MainNav', () => {
   describe('when the user logs in', () => {
     it('displays user profile picture', async () => {
       renderMainNav()
+      const userStore = useUserStore()
 
       let profileImage = screen.queryByRole('img', {
         name: /user profile image/i,
@@ -57,6 +61,7 @@ describe('MainNav', () => {
       const loginButton = screen.getByRole('button', {
         name: /sign in/i,
       })
+      userStore.isLoggedIn = true
       await userEvent.click(loginButton)
 
       profileImage = screen.getByRole('img', {
