@@ -8,8 +8,7 @@
     <div class="flex h-full flex-1 flex-nowrap text-base font-light">
       <div class="relative flex h-full flex-1 items-center pr-3">
         <label for="role" class="absolute -top-10 left-0">Role</label>
-
-        <text-input id="role" placeholder="Software engineer" v-model="role" />
+        <text-input id="role" v-model="role" placeholder="Software engineer" />
       </div>
 
       <span
@@ -20,8 +19,7 @@
 
       <div class="relative flex h-full flex-1 items-center pl-3">
         <label for="location" class="absolute -top-10 left-0">Where?</label>
-
-        <text-input id="location" placeholder="Los Angeles" v-model="location" />
+        <text-input id="location" v-model="location" placeholder="Los Angeles" />
       </div>
     </div>
 
@@ -29,12 +27,12 @@
   </form>
 </template>
 
-<script setup>
-import ActionButton from '@/components/Shared/ActionButton.vue'
-import TextInput from '@/components/Shared/TextInput.vue'
-
+<script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+
+import ActionButton from '@/components/Shared/ActionButton.vue'
+import TextInput from '@/components/Shared/TextInput.vue'
 
 const role = ref('')
 const location = ref('')
