@@ -5,23 +5,18 @@ import pluginVue from 'eslint-plugin-vue'
 import pluginVitest from '@vitest/eslint-plugin'
 import pluginOxlint from 'eslint-plugin-oxlint'
 import skipFormatting from 'eslint-config-prettier/flat'
-import tseslint from 'typescript-eslint' // Needed for the TS config
+import tseslint from 'typescript-eslint'
 
 export default defineConfig([
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,vue,js,mjs,jsx}'], // Added ts/mts
+    files: ['**/*.{ts,mts,vue,js,mjs,jsx}'],
   },
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
-  // 1. Replaces @vue/eslint-config-typescript from your screenshot
   ...tseslint.configs.recommended,
-
-  // 2. Replaces eslint:recommended
   js.configs.recommended,
-
-  // 3. Replaces plugin:vue/vue3-recommended (Stronger than 'essential')
   ...pluginVue.configs['flat/recommended'],
 
   {
@@ -33,19 +28,22 @@ export default defineConfig([
     },
   },
 
+  // FIXED SECTION FOR VITEST
   {
-    // 4. Replaces plugin:vitest-globals/recommended
-    ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ['**/__tests__/**'], // Use double asterisks to catch subfolders like /api/
+    plugins: {
+      vitest: pluginVitest,
+    },
     languageOptions: {
       globals: {
-        ...pluginVitest.environments.env.globals,
+        ...pluginVitest.environments.env.globals, // This adds describe, beforeEach, etc.
       },
+    },
+    rules: {
+      ...pluginVitest.configs.recommended.rules,
     },
   },
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
-
-  // 5. Replaces @vue/eslint-config-prettier
   skipFormatting,
 ])
