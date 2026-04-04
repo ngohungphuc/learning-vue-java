@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 vi.mock('vue-router', () => ({
   useRoute: vi.fn(),
 }))
-import Subnav from '@/components/Navigation/Subnav.vue'
+import Subnav from '@/components/Navigation/SubNav.vue'
 import { useJobsStore } from '@/stores/jobs'
 const useRouteMock = useRoute as Mock
 
