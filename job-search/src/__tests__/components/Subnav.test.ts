@@ -7,6 +7,7 @@ vi.mock('vue-router', () => ({
 }))
 import Subnav from '@/components/Navigation/Subnav.vue'
 import { useJobsStore } from '@/stores/jobs'
+const useRouteMock = useRoute as Mock
 
 describe('TheSubnav', () => {
   const renderTheSubnav = () => {
@@ -27,7 +28,7 @@ describe('TheSubnav', () => {
 
   describe('when user is on jobs page', () => {
     it('displays job count', async () => {
-      useRoute.mockReturnValue({ name: 'JobResults' })
+      useRouteMock.mockReturnValue({ name: 'JobResults' })
 
       const { jobsStore } = renderTheSubnav()
       const numberOfJobs = 16
@@ -40,7 +41,7 @@ describe('TheSubnav', () => {
 
   describe('when user is not on jobs page', () => {
     it('does NOT display job count', () => {
-      useRoute.mockReturnValue({ name: 'Home' })
+      useRouteMock.mockReturnValue({ name: 'Home' })
 
       const { jobsStore } = renderTheSubnav()
       const numberOfJobs = 16
