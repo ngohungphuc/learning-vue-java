@@ -1,5 +1,8 @@
 package com.tony.SpringJDBC.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Student {
     private int rollNo;
 

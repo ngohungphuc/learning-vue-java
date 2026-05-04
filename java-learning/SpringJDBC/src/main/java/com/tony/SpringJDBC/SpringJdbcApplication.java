@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import com.tony.SpringJDBC.model.Student;
+import com.tony.SpringJDBC.service.StudentService;
 
 @SpringBootApplication
 public class SpringJdbcApplication {
@@ -16,6 +17,9 @@ public class SpringJdbcApplication {
 		s.setRollNo(101);
 		s.setName("John Doe");
 		s.setMarks(85);
+
+		StudentService studentService = context.getBean(StudentService.class);
+		studentService.insertStudent(s);
 	}
 
 }
