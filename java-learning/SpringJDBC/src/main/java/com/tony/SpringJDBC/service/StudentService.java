@@ -13,7 +13,7 @@ public class StudentService {
     private StudentRepo studentRepo;
 
     public void insertStudent(Student s) {
-        System.out.println("Inserting student: " + s);
+        studentRepo.insertStudent(s);
     }
 
     public StudentRepo getStudentRepo() {
@@ -23,10 +23,6 @@ public class StudentService {
     @Autowired
     public void setStudentRepo(StudentRepo studentRepo) {
         this.studentRepo = studentRepo;
-    }
-
-    public void addStudent(Student s) {
-        studentRepo.insertStudent(s);
     }
 
     public List<Student> getAllStudents() {
