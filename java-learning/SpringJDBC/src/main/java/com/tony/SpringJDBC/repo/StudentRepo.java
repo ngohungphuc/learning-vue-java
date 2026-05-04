@@ -1,13 +1,11 @@
 package com.tony.SpringJDBC.repo;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.tony.SpringJDBC.model.Student;
@@ -25,17 +23,15 @@ public class StudentRepo {
 
     public List<Student> getAllStudents() {
         String sql = "select * from student";
-        RowMapper<Student> rowMapper = new RowMapper<Student>() {
-            @Override
-            public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-                Student s = new Student();
-                s.setRollNo(rs.getInt("rollno"));
-                s.setName(rs.getString("name"));
-                s.setMarks(rs.getInt("marks"));
-                return s;
-            }
+        RowMapper<Student> rowMapper = (ResultSet rs, int rowNum) -> {
+            Student s = new Student();
+            s.setRollNo(rs.getInt("rollno"));
+            s.setName(rs.getString("name"));
+            s.setMarks(rs.getInt("marks"));
+            return s;
         };
         return jdbc.query(sql, rowMapper);
+
     }
 
     public JdbcTemplate getJdbc() {
