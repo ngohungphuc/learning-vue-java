@@ -1,7 +1,8 @@
-package com.tony.SpringJDBC;
+package com.tony.SpringJDBC.model;
 
 public class Student {
     private int rollNo;
+
     private String name;
     private int marks;
 
@@ -15,6 +16,18 @@ public class Student {
 
     public int getMarks() {
         return marks;
+    }
+
+    public void setRollNo(int rollNo) {
+        this.rollNo = rollNo;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMarks(int marks) {
+        this.marks = marks;
     }
 
     @Override
