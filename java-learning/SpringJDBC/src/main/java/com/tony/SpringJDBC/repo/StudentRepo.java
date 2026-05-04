@@ -10,12 +10,12 @@ import com.tony.SpringJDBC.model.Student;
 public class StudentRepo {
 
     public void insertStudent(Student s) {
-
+        System.out.println("Inserting student into DB: " + s);
     }
 
     public List<Student> getAllStudents() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllStudents'");
+        System.out.println("Fetching all students from DB");
+        return null;
     }
 
 }
